@@ -9,6 +9,8 @@ function App() {
   const [lionsTeam, homeScore] = useState(0);
   const [tigersTeam, awayScore] = useState(0);
   const [quarter, addQuarter] = useState(1);
+  const [down, addDown] = useState(1);
+  const [yard, subYard] = useState(10);
   
 
   return (
@@ -31,11 +33,11 @@ function App() {
         <div className="bottomRow">
            <div className="down">
             <h3 className="down__title">Down</h3>
-            <div className="down__value">3</div>
+            <div className="down__value">{down}</div>
           </div>
             <div className="toGo">
               <h3 className="toGo__title">To Go</h3>
-            <div className="toGo__value">7</div>
+            <div className="toGo__value">{yard}</div>
           </div>
           <div className="ballOn">
             <h3 className="ballOn__title">Ball on</h3>
@@ -48,17 +50,31 @@ function App() {
        </div>
       </section>
       <section className="buttons">
-        <div className="homeButtons">
+        <div className="buttonGroup">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
           <button className="homeButtons__touchdown" onClick={() => homeScore(lionsTeam + 7)}>Home Touchdown</button>
           <button className="homeButtons__fieldGoal" onClick={() => homeScore(lionsTeam + 3)}>Home Field Goal</button>
         </div>
-        <div>
-        <button className="homeButtons__fieldGoal" onClick={() => addQuarter(quarter + 1)}>Next Quarter</button>
-        </div>
-        <div className="awayButtons">
+        <div className="buttonGroup">
           <button className="awayButtons__touchdown" onClick={() => awayScore(tigersTeam + 7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={() => awayScore(tigersTeam + 3)}>Away Field Goal</button>
+        </div>
+      </section>
+      <section className="buttons">
+        <div className="buttonGroup">
+          <button className="buttons__down" onClick={() => addDown(down + 1)}>Next Down</button>
+          <button className="buttons__down" onClick={() => addDown(down - 3)}>Reset Downs</button>
+        </div>
+        <div className="buttonGroup">
+          <button className="buttons__toGo" onClick={() => subYard(yard - 1)}>Subtract Yard</button>
+          <button className="buttons__toGo" onClick={() => subYard(yard + 9)}>Reset Yards</button>
+        </div>
+      </section>
+     
+      <section class="buttons">
+        <div className="buttonGroup">
+          <button className="buttons__quarter" onClick={() => addQuarter(quarter + 1)}>Next Quarter</button>
+          <button className="buttons__quarter" onClick={() => addQuarter(quarter - 3)}>Reset Quarters</button>
         </div>
       </section>
     </div>
